@@ -3,13 +3,13 @@
     <!-- Jardins -->
     <NuxtLink to="/" :class="[
             'group flex items-center gap-4 px-3 py-2 text-sm font-medium rounded-md text-foreground hover:bg-accent',
-            route.path === '/' ? 'bg-accent' : ''
+            route.path === '/' || route.path.startsWith('/zone') ? 'bg-accent' : ''
             ]">
       <img src="/icons/fields.svg" class="w-6 h-6 mb-1" />
       <span 
       :class="[
                   'textx-xs border-b-3 border-dashed group-hover:border-primary transition-all',
-                  route.path === '/' ? 'border-primary' : 'border-transparent'
+                  route.path === '/' || route.path.startsWith('/zone') ? 'border-primary' : 'border-transparent'
                 ]"
       >Zones de culture</span>
     </NuxtLink>

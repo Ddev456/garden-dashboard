@@ -46,6 +46,22 @@ export interface Plant {
   notes: string;
 }
 
+export interface Itinerary {
+  id: string;
+  name: string;
+  icon: string;
+  description: string;
+  steps: string[];
+}
+
+export interface JournalEntry {
+  id: string;
+  content: string;
+  createdAt: string;
+  author: string;
+  photos?: string[];
+}
+
 export interface ZoneDetail {
   id: string;
   name: string;
@@ -63,6 +79,8 @@ export interface ZoneDetail {
   tasks: Task[];
   notes: Note[];
   environmentalConditions: EnvironmentalCondition[];
+  itineraries?: Itinerary[];
+  journal?: JournalEntry[];
 }
 
 const today = new Date();
@@ -120,8 +138,8 @@ export const mockZoneDetail: ZoneDetail = {
     },
     {
       id: 'ph2',
-      plantName: 'Radis',
-      plantIcon: '/icons/plants/radish.svg',
+      plantName: 'Navets',
+      plantIcon: '/icons/plants/turnip.svg',
       plantedDate: format(subDays(today, 120), 'dd/MM/yyyy'),
       harvestedDate: format(subDays(today, 90), 'dd/MM/yyyy'),
       yield: '3kg',
@@ -191,6 +209,37 @@ export const mockZoneDetail: ZoneDetail = {
       humidity: 62,
       soilMoisture: 70,
       lightLevel: 90
+    }
+  ],
+  itineraries: [
+    {
+      id: 'i1',
+      name: 'Itinéraire Tomates',
+      icon: '/icons/plants/tomatoes.svg',
+      description: 'De la plantation à la récolte des tomates Roma.',
+      steps: ['Préparer le sol', 'Semer les graines', 'Tuteurer', 'Récolter les fruits']
+    },
+    {
+      id: 'i2',
+      name: 'Itinéraire Courgettes',
+      icon: '/icons/plants/zucchini.svg',
+      description: 'Toutes les étapes pour réussir la culture des courgettes.',
+      steps: ['Préparer la planche', 'Planter les jeunes plants', 'Arroser', 'Récolter']
+    }
+  ],
+  journal: [
+    {
+      id: 'j1',
+      content: 'Première note du carnet de bord, météo idéale aujourd\'hui.',
+      createdAt: format(subDays(today, 1), 'dd/MM/yyyy HH:mm'),
+      author: 'Dylan',
+      photos: ['/images/zone1.jpeg']
+    },
+    {
+      id: 'j2',
+      content: 'Ajout de compost ce matin, à surveiller l\'humidité.',
+      createdAt: format(today, 'dd/MM/yyyy HH:mm'),
+      author: 'Sophie'
     }
   ]
 }; 
