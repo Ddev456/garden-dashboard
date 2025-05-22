@@ -9,7 +9,7 @@
       <TooltipProvider>
             <Tooltip>
               <TooltipTrigger as-child>
-        <div class="relative bg-white rounded-lg p-6 hover:shadow-xl hover:cursor-pointer border-2 border-transparent hover:border-primary hover:border-dashed min-w-[250px] max-w-xs mx-auto">
+        <div @click="router.push(`/zones/${zone.id}`)" class="relative bg-white rounded-lg p-6 hover:shadow-xl hover:cursor-pointer border-2 border-transparent hover:border-primary hover:border-dashed min-w-[250px] max-w-xs mx-auto">
           <!-- Bouton favori -->
           <button class="absolute top-2 right-2 text-yellow-400 hover:text-yellow-500" @click.stop="toggleFavorite(zone)">
             <Star :fill="zone.favorite ? 'currentColor' : 'none'" class="w-6 h-6" />
