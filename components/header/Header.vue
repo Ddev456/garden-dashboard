@@ -1,6 +1,6 @@
 <!-- components/header/Header.vue -->
 <template>
-  <header class="sticky top-0 z-40 border-b bg-white">
+  <header class="sticky top-0 z-40 bg-secondary rounded-xl border border-primary/80">
     <div class="flex h-16 items-center px-4 lg:px-6">
 
       <!-- Logo mobile -->
@@ -22,7 +22,7 @@
               v-model="searchQuery"
               type="text"
               placeholder="Rechercher une plante..."
-              class="pl-9 w-full lg:w-[300px] lg:w-[400px] bg-secondary/80"
+              class="pl-9 w-full lg:w-[300px] bg-background"
             />
             <!-- Résultats de recherche -->
             <div

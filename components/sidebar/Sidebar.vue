@@ -2,8 +2,8 @@
 <template>
   <div>
     <!-- Sidebar Desktop -->
-    <aside class="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
-      <div class="flex flex-col flex-grow bg-white border-r">
+    <aside class="hidden lg:flex lg:w-72 lg:flex-col lg:fixed lg:inset-y-0 p-6">
+      <div class="flex flex-col flex-grow bg-secondary p-4 rounded-xl shadow-xl border border-primary/80">
         <!-- Logo -->
         <div class="flex items-center h-16 px-4">
           <NuxtLink to="/" class="flex items-center space-x-2">

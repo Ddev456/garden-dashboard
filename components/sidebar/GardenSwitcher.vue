@@ -1,11 +1,11 @@
 <!-- components/sidebar/GardenSwitcher.vue -->
 <template>
   <DropdownMenu>
-    <DropdownMenuTrigger asChild class="bg-secondary border-2 border-dashed border-primary">
-      <Button variant="ghost" class="w-full justify-start">
+    <DropdownMenuTrigger asChild class="bg-background border-2 border-dashed border-primary">
+      <Button variant="ghost" class="w-full">
         <img :src="currentGarden.icon" class="w-6 h-6 mb-1" />
         <span class="flex-1 text-left">{{ currentGarden.name }}</span>
-        <ChevronDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        <ChevronDown class="h-4 w-4 shrink-0 opacity-50" />
       </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent class="w-56">

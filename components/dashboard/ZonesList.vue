@@ -6,7 +6,10 @@
         :key="zone.id"
         class="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3"
       >
-        <div class="relative bg-white rounded-lg shadow-md p-6 hover:shadow-xl hover:cursor-pointer border-2 border-transparent hover:border-primary hover:border-dashed min-w-[250px] max-w-xs mx-auto">
+      <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger as-child>
+        <div class="relative bg-white rounded-lg p-6 hover:shadow-xl hover:cursor-pointer border-2 border-transparent hover:border-primary hover:border-dashed min-w-[250px] max-w-xs mx-auto">
           <!-- Bouton favori -->
           <button class="absolute top-2 right-2 text-yellow-400 hover:text-yellow-500" @click.stop="toggleFavorite(zone)">
             <Star :fill="zone.favorite ? 'currentColor' : 'none'" class="w-6 h-6" />
@@ -19,16 +22,23 @@
             <Badge v-for="tag in zone.tags" :key="tag" variant="secondary">{{ tag }}</Badge>
           </div>
           <!-- Description tronquée avec tooltip shadcn -->
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger as-child>
+
                 <p class="mt-1 text-sm text-gray-500 line-clamp-2 cursor-pointer">
                 {{ zone.description }}
               </p>
-            </TooltipTrigger>
-            <TooltipContent class="max-w-xs">
-              {{ zone.description }}
-              <p>Plantes de la zone : {{ zone.plantsCount }}</p>
+            
+          <!-- Statistiques et actions -->
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xs text-gray-400">{{ zone.plantsCount }} plantes</span>
+            <button class="inline-flex items-center px-3 py-1 border border-transparent rounded-md shadow-sm text-xs font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+              Voir détails
+            </button>
+          </div>
+        </div>
+      </TooltipTrigger>
+            <TooltipContent class="w-[20rem] bg-white rounded-lg shadow-md p-4 transition-all duration-300 flex flex-col gap-6">
+              <p class="text-sm text-primary">{{ zone.description }}</p>
+              <p class="text-xs text-slate-500">Plantes de la zone : {{ zone.plantsCount }}</p>
               <div class="flex flex-wrap gap-1">
                 <div class="p-2 bg-gray-100 rounded-[0.8rem]" v-for="plant in zone.plants" :key="plant">
                   <img :src="plant" :alt="plant" class="w-6 h-6" />
@@ -41,14 +51,6 @@
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          <!-- Statistiques et actions -->
-          <div class="mt-4 flex items-center justify-between">
-            <span class="text-xs text-gray-400">{{ zone.plantsCount }} plantes</span>
-            <button class="inline-flex items-center px-3 py-1 border border-transparent rounded-md shadow-sm text-xs font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-              Voir détails
-            </button>
-          </div>
-        </div>
       </CarouselItem>
     </CarouselContent>
     <CarouselPrevious />

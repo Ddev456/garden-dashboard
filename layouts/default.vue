@@ -7,7 +7,7 @@
     />
 
     <!-- Main Content -->
-    <div class="lg:pl-64">
+    <div class="lg:pl-72 p-6">
       <!-- Header -->
       <Header @toggle-mobile-menu="isMobileMenuOpen = !isMobileMenuOpen" />
 
