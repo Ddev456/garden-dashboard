@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  modules: ['shadcn-nuxt'],
+  modules: ['shadcn-nuxt', '@nuxt/fonts'],
   shadcn: {
     /**
      * Prefix for all the imported component
@@ -18,5 +18,16 @@ export default defineNuxtConfig({
      * @default "./components/ui"
      */
     componentDir: './components/ui'
+  },
+  app: {
+    head: {
+      title: 'Carnet Potager', // default fallback title
+      htmlAttrs: {
+        lang: 'fr',
+      },
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/logo.svg' },
+      ]
+    }
   }
 })
