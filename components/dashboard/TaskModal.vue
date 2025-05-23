@@ -11,7 +11,7 @@
 
       <form @submit.prevent="handleSubmit" class="space-y-4">
         <div class="space-y-2">
-          <Label for="title">Titre</Label>
+          <label for="title" class="text-sm font-medium">Titre</label>
           <Input
             id="title"
             v-model="formData.title"
@@ -21,7 +21,7 @@
         </div>
 
         <div class="space-y-2">
-          <Label for="description">Description</Label>
+          <label for="description" class="text-sm font-medium">Description</label>
           <Textarea
             id="description"
             v-model="formData.description"
@@ -32,7 +32,7 @@
 
         <div class="grid grid-cols-2 gap-4">
           <div class="space-y-2">
-            <Label for="priority">Priorité</Label>
+            <label for="priority" class="text-sm font-medium">Priorité</label>
             <Select v-model="formData.priority">
               <SelectTrigger>
                 <SelectValue placeholder="Sélectionnez une priorité" />
@@ -46,7 +46,7 @@
           </div>
 
           <div class="space-y-2">
-            <Label for="assignee">Assigné à</Label>
+            <label for="assignee" class="text-sm font-medium">Assigné à</label>
             <Select v-model="formData.assigneeId">
               <SelectTrigger>
                 <SelectValue placeholder="Sélectionnez un jardinier" />
@@ -65,7 +65,7 @@
         </div>
 
         <div class="space-y-2">
-          <Label for="dueDate">Date d'échéance</Label>
+          <label for="dueDate" class="text-sm font-medium">Date d'échéance</label>
           <Input
             id="dueDate"
             v-model="formData.dueDate"
@@ -87,7 +87,12 @@
 </template>
 
 <script setup lang="ts">
-import type { Task } from '~/types/task'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import type { Task, TaskPriority } from '~/types/task'
 import { mockUsers } from '~/mocks/data'
 
 const props = defineProps<{
@@ -103,7 +108,7 @@ const emit = defineEmits<{
 const formData = ref({
   title: '',
   description: '',
-  priority: 'moyenne' as const,
+  priority: 'moyenne' as TaskPriority,
   assigneeId: '',
   dueDate: ''
 })

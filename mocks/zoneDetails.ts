@@ -446,8 +446,8 @@ export const mockZoneDetail: ZoneDetail = {
             ph: '6.0-6.8',
             nutrients: ['Matière organique', 'Phosphore pour l\'enracinement']
           }
-        },
-        {
+    },
+    {
           id: 'repiquage',
           title: 'Repiquage des plantules',
           description: 'Repiquer les jeunes plants dans des pots plus grands',

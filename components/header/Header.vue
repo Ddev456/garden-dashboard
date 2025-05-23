@@ -71,12 +71,6 @@
       </div>
     </div>
 
-    <!-- Modal de nouvelle tâche -->
-    <TaskModal
-      v-model:isOpen="isTaskModalOpen"
-      :task="null"
-      @submit="handleTaskSubmit"
-    />
   </header>
 </template>
 

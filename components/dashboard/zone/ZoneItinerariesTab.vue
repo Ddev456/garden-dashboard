@@ -18,7 +18,7 @@
       <div class="bg-green-600 text-white rounded-lg px-4 py-3 shadow-lg border border-green-500/20">
         <div class="flex items-center gap-3">
           <CheckCircle class="w-5 h-5" />
-          <div>
+            <div>
             <p class="font-medium">Tâches créées avec succès</p>
             <p class="text-sm opacity-90">{{ tasksCreatedCount }} tâches ajoutées à votre zone</p>
           </div>
@@ -43,7 +43,7 @@
         @start-itinerary="startItinerary"
         @generate-tasks="prepareTaskGeneration"
       />
-    </div>
+            </div>
 
     <!-- Message si aucun itinéraire -->
     <div v-if="filteredItineraries.length === 0" class="text-center py-8 text-gray-500">
@@ -160,7 +160,7 @@ const startItinerary = (itinerary: any) => {
   // Pour la démo, on redirige vers les détails
   goToItinerary(itinerary.id)
 }
-</script>
+</script> 
 
 <style scoped>
 @keyframes shimmer {

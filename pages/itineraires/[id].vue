@@ -14,7 +14,7 @@
           <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
             <CheckIcon class="w-4 h-4" />
           </div>
-          <div>
+      <div>
             <p class="font-medium">Progression mise à jour</p>
             <p class="text-sm opacity-90">{{ itinerary.progress }}% complété</p>
           </div>
@@ -147,7 +147,7 @@
                         <li v-for="mistake in step.commonMistakes" :key="mistake" class="text-red-800 text-xs flex items-start gap-2">
                           <div class="w-1 h-1 bg-red-600 rounded-full mt-2 shrink-0"></div>
                           {{ mistake }}
-                        </li>
+          </li>
                       </ul>
                     </div>
 
@@ -195,8 +195,8 @@
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+      </CardContent>
+    </Card>
           </div>
         </div>
       </div>
