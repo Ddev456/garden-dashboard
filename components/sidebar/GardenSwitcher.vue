@@ -4,7 +4,7 @@
     <DropdownMenuTrigger asChild class="bg-background border-2 border-dashed border-primary">
       <Button variant="ghost" class="w-full">
         <img :src="currentGarden.icon" class="w-6 h-6 mb-1" />
-        <span class="flex-1 text-left">{{ currentGarden.name }}</span>
+        <span class="hidden sm:flex flex-1 text-left">{{ currentGarden.name }}</span>
         <ChevronDown class="h-4 w-4 shrink-0 opacity-50" />
       </Button>
     </DropdownMenuTrigger>

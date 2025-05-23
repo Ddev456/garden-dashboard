@@ -8,7 +8,7 @@
       <img src="/icons/fields.svg" class="w-6 h-6 mb-1" />
       <span 
       :class="[
-                  'textx-xs border-b-3 border-dashed group-hover:border-primary transition-all',
+                  'hidden sm:flex text-xs border-b-3 border-dashed group-hover:border-primary transition-all',
                   route.path === '/' || route.path.startsWith('/zone') ? 'border-primary' : 'border-transparent'
                 ]"
       >Zones de culture</span>
@@ -22,7 +22,7 @@
       <img src="/icons/wiki.svg" class="w-6 h-6 mb-1" />
       <span 
       :class="[
-                  'textx-xs border-b-3 border-dashed group-hover:border-primary transition-all',
+                  'hidden sm:flex text-xs border-b-3 border-dashed group-hover:border-primary transition-all',
                   route.path.startsWith('/wiki') ? 'border-primary' : 'border-transparent'
                 ]"
       >Wiki</span>
@@ -41,7 +41,7 @@
       <img src="/icons/calendar.svg" class="w-6 h-6 mb-1" />
       <span 
       :class="[
-                  'textx-xs border-b-3 border-dashed group-hover:border-primary transition-all',
+                  'hidden sm:flex text-xs border-b-3 border-dashed group-hover:border-primary transition-all',
                   route.path.startsWith('/calendrier') ? 'border-primary' : 'border-transparent'
                 ]"
       >Calendrier</span>
@@ -55,7 +55,7 @@
       <img src="/icons/culture-path.svg" class="w-6 h-6 mb-1" />
       <span 
       :class="[
-                  'textx-xs border-b-3 border-dashed group-hover:border-primary transition-all',
+                  'hidden sm:flex text-xs border-b-3 border-dashed group-hover:border-primary transition-all',
                   route.path.startsWith('/itineraires') ? 'border-primary' : 'border-transparent'
                 ]"
       >Itinéraires</span>

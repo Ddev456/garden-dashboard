@@ -72,11 +72,11 @@
 
     <!-- Onglets pour le contenu détaillé -->
     <Tabs default-value="plants" class="w-full">
-      <TabsList class="grid w-full grid-cols-4">
-        <TabsTrigger value="plants">Plantes de la zone</TabsTrigger>
-        <TabsTrigger value="history">Historique</TabsTrigger>
-        <TabsTrigger value="itineraries">Itinéraires de cultures</TabsTrigger>
-        <TabsTrigger value="journal">Carnet de bord</TabsTrigger>
+      <TabsList class="flex gap-2 w-full overflow-x-auto">
+        <TabsTrigger value="plants" class="w-full">Plantes de la zone</TabsTrigger>
+        <TabsTrigger value="history" class="w-full">Historique</TabsTrigger>
+        <TabsTrigger value="itineraries" class="w-full">Itinéraires de cultures</TabsTrigger>
+        <TabsTrigger value="journal" class="w-full">Carnet de bord</TabsTrigger>
       </TabsList>
 
       <!-- Onglet Plantes de la zone -->
