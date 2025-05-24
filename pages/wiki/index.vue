@@ -1,139 +1,22 @@
 <template>
   <div class="max-w-7xl mx-auto py-8 space-y-8">
     <!-- En-tête du Wiki -->
-    <div class="text-center">
-      <h1 class="text-4xl font-bold text-gray-900 mb-4">
-        🌱 Wiki des Plantes
-      </h1>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-        Découvrez tout ce qu'il faut savoir sur vos plantes préférées : conseils de culture, variétés, compagnons et bien plus encore.
-      </p>
-    </div>
+    <WikiHeader />
 
     <!-- Barre de recherche principale -->
-    <div class="max-w-2xl mx-auto">
-      <div class="relative">
-        <SearchIcon class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-        <input
-          v-model="searchQuery"
-          type="text"
-          placeholder="Rechercher une plante..."
-          class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg"
-          @input="handleSearch"
-        />
-        <div v-if="searchQuery" class="absolute right-3 top-1/2 transform -translate-y-1/2">
-          <button @click="clearSearch" class="text-gray-400 hover:text-gray-600">
-            <XIcon class="w-5 h-5" />
-          </button>
-        </div>
-      </div>
-      
-      <!-- Suggestions de recherche rapide -->
-      <div class="flex flex-wrap gap-2 mt-4 justify-center">
-        <button
-          v-for="suggestion in searchSuggestions"
-          :key="suggestion"
-          @click="searchQuery = suggestion; handleSearch()"
-          class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors"
-        >
-          {{ suggestion }}
-        </button>
-      </div>
-    </div>
+    <WikiSearchBar 
+      v-model:search-query="searchQuery"
+      :suggestions="searchSuggestions"
+      @search="handleSearch"
+      @clear="clearSearch"
+    />
 
     <!-- Filtres et options d'affichage -->
-    <div class="bg-white rounded-lg shadow-sm border p-6">
-      <div class="flex flex-wrap items-center justify-between gap-4">
-        <!-- Filtres -->
-        <div class="flex flex-wrap gap-4">
-          <!-- Catégorie -->
-          <div class="flex items-center gap-2">
-            <label class="text-sm font-medium text-gray-700">Catégorie :</label>
-            <Select v-model="filters.category">
-              <SelectTrigger class="w-40">
-                <SelectValue placeholder="Toutes" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="All">Toutes</SelectItem>
-                <SelectItem value="légume-fruit">Légume-fruit</SelectItem>
-                <SelectItem value="légume-feuille">Légume-feuille</SelectItem>
-                <SelectItem value="légume-racine">Légume-racine</SelectItem>
-                <SelectItem value="aromate">Aromate</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <!-- Difficulté -->
-          <div class="flex items-center gap-2">
-            <label class="text-sm font-medium text-gray-700">Difficulté :</label>
-            <Select v-model="filters.difficulty">
-              <SelectTrigger class="w-32">
-                <SelectValue placeholder="Toutes" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="">Toutes</SelectItem>
-                <SelectItem value="facile">Facile</SelectItem>
-                <SelectItem value="moyen">Moyen</SelectItem>
-                <SelectItem value="difficile">Difficile</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <!-- Saison -->
-          <div class="flex items-center gap-2">
-            <label class="text-sm font-medium text-gray-700">Saison :</label>
-            <Select v-model="filters.season">
-              <SelectTrigger class="w-36">
-                <SelectValue placeholder="Toutes" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="">Toutes</SelectItem>
-                <SelectItem value="printemps">Printemps</SelectItem>
-                <SelectItem value="été">Été</SelectItem>
-                <SelectItem value="automne">Automne</SelectItem>
-                <SelectItem value="hiver">Hiver</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        <!-- Options d'affichage -->
-        <div class="flex items-center gap-4">
-          <div class="flex items-center gap-2">
-            <span class="text-sm text-gray-500">Affichage :</span>
-            <div class="flex border border-gray-300 rounded-lg overflow-hidden">
-              <button
-                @click="viewMode = 'grid'"
-                :class="[
-                  'px-3 py-2 text-sm transition-colors',
-                  viewMode === 'grid' 
-                    ? 'bg-primary text-white' 
-                    : 'bg-white text-gray-600 hover:bg-gray-50'
-                ]"
-              >
-                <GridIcon class="w-4 h-4" />
-              </button>
-              <button
-                @click="viewMode = 'list'"
-                :class="[
-                  'px-3 py-2 text-sm transition-colors border-l border-gray-300',
-                  viewMode === 'list' 
-                    ? 'bg-primary text-white' 
-                    : 'bg-white text-gray-600 hover:bg-gray-50'
-                ]"
-              >
-                <ListIcon class="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-          
-          <!-- Nombre de résultats -->
-          <div class="text-sm text-gray-500">
-            {{ filteredPlants.length }} plante{{ filteredPlants.length > 1 ? 's' : '' }}
-          </div>
-        </div>
-      </div>
-    </div>
+    <WikiFilters
+      v-model:filters="filters"
+      v-model:view-mode="viewMode"
+      :results-count="filteredPlants.length"
+    />
 
     <!-- Résultats -->
     <div v-if="filteredPlants.length > 0">
@@ -166,56 +49,31 @@
     </div>
 
     <!-- Message si aucun résultat -->
-    <div v-else class="text-center py-16">
-      <SearchXIcon class="w-16 h-16 text-gray-300 mx-auto mb-4" />
-      <h3 class="text-xl font-semibold text-gray-900 mb-2">Aucune plante trouvée</h3>
-      <p class="text-gray-600 max-w-md mx-auto">
-        Essayez de modifier vos critères de recherche ou explorez nos suggestions ci-dessus.
-      </p>
-      <Button @click="resetFilters" variant="outline" class="mt-4">
-        Réinitialiser les filtres
-      </Button>
-    </div>
+    <WikiEmptyState
+      v-else
+      :icon="SearchXIcon"
+      title="Aucune plante trouvée"
+      description="Essayez de modifier vos critères de recherche ou explorez nos suggestions ci-dessus."
+      action-label="Réinitialiser les filtres"
+      @action="resetFilters"
+    />
 
     <!-- Statistiques en bas -->
-    <div class="bg-gray-50 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-gray-900 mb-4">Notre collection</h3>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="text-center">
-          <div class="text-3xl font-bold text-primary">{{ stats.total }}</div>
-          <div class="text-sm text-gray-600">Plantes</div>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold text-green-600">{{ stats.categories }}</div>
-          <div class="text-sm text-gray-600">Catégories</div>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold text-blue-600">{{ stats.varieties }}</div>
-          <div class="text-sm text-gray-600">Variétés</div>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold text-purple-600">{{ stats.easyPlants }}</div>
-          <div class="text-sm text-gray-600">Faciles</div>
-        </div>
-      </div>
-    </div>
+    <WikiStats :stats="stats" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Button } from '@/components/ui/button'
-import { 
-  SearchIcon, 
-  XIcon, 
-  GridIcon, 
-  ListIcon, 
-  SearchXIcon 
-} from 'lucide-vue-next'
+import { SearchXIcon } from 'lucide-vue-next'
 import { mockPlantsWiki, searchPlants } from '@/mocks/plantsWiki'
 import PlantCard from '@/components/wiki/PlantCard.vue'
+import WikiHeader from '@/components/wiki/WikiHeader.vue'
+import WikiSearchBar from '@/components/wiki/WikiSearchBar.vue'
+import WikiFilters from '@/components/wiki/WikiFilters.vue'
+import WikiStats from '@/components/wiki/WikiStats.vue'
+import WikiEmptyState from '@/components/wiki/WikiEmptyState.vue'
 
 // Debug - à supprimer après test
 console.log('mockPlantsWiki:', mockPlantsWiki)

@@ -58,28 +58,28 @@
           </div>
           <div class="flex items-center gap-1">
             <SunIcon class="w-3 h-3 text-yellow-600" />
-            <span class="text-gray-600">{{ plant.seasons.join(', ') }}</span>
+            <span class="text-gray-600">{{ (plant.seasons || []).join(', ') }}</span>
           </div>
           <div class="flex items-center gap-1">
             <StarIcon class="w-3 h-3 text-purple-600" />
-            <span class="text-gray-600">{{ plant.averageRating }}/5</span>
+            <span class="text-gray-600">{{ plant.averageRating || 0 }}/5</span>
           </div>
         </div>
         
         <!-- Tags -->
         <div class="flex flex-wrap gap-1">
           <span 
-            v-for="tag in plant.tags.slice(0, 3)" 
+            v-for="tag in (plant.tags || []).slice(0, 3)" 
             :key="tag"
             class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full"
           >
             {{ tag }}
           </span>
           <span 
-            v-if="plant.tags.length > 3"
+            v-if="(plant.tags || []).length > 3"
             class="text-xs text-gray-400"
           >
-            +{{ plant.tags.length - 3 }}
+            +{{ (plant.tags || []).length - 3 }}
           </span>
         </div>
         
