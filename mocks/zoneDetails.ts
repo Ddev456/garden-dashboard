@@ -96,6 +96,7 @@ export interface Itinerary {
   }>;
   companions?: Array<{
     plant: string;
+    icon: string;
     benefit: string;
     distance: string;
   }>;
@@ -212,7 +213,7 @@ export const mockZoneDetail: ZoneDetail = {
     {
       id: 'ph2',
       plantName: 'Navets',
-      plantIcon: '/icons/plants/turnip.svg',
+      plantIcon: '/icons/plants/radish.png',
       plantedDate: format(subDays(today, 120), 'dd/MM/yyyy'),
       harvestedDate: format(subDays(today, 90), 'dd/MM/yyyy'),
       yield: '3kg',
@@ -327,17 +328,20 @@ export const mockZoneDetail: ZoneDetail = {
         {
           plant: 'Basilic',
           benefit: 'Repousse les insectes nuisibles et améliore le goût',
-          distance: '20-30 cm'
+          distance: '20-30 cm',
+          icon: '/icons/plants/basil.svg'
         },
         {
           plant: 'Œillets d\'Inde',
           benefit: 'Protection contre les nématodes et pucerons',
-          distance: '30-40 cm'
+          distance: '30-40 cm',
+          icon: '/icons/plants/flower.png'
         },
         {
           plant: 'Persil',
           benefit: 'Améliore la croissance et repousse certains parasites',
-          distance: '15-25 cm'
+          distance: '15-25 cm',
+          icon: "/icons/plants/parsley.png"
         }
       ],
       pests: [
@@ -568,7 +572,7 @@ export const mockZoneDetail: ZoneDetail = {
       id: 'radis',
       name: 'Radis',
       description: 'Culture rapide et facile de radis croquants, idéale pour débuter',
-      icon: '/icons/plants/radish.svg',
+      icon: '/icons/plants/radish.png',
       difficulty: 'facile',
       totalDuration: '30 jours',
       plantType: 'légume-racine',
@@ -598,12 +602,14 @@ export const mockZoneDetail: ZoneDetail = {
         {
           plant: 'Laitue',
           benefit: 'Optimise l\'espace, les radis ameublissent le sol',
-          distance: '5-10 cm'
+          distance: '5-10 cm',
+          icon: '/icons/plants/lettuce.svg'
         },
         {
           plant: 'Carottes',
           benefit: 'Les radis marquent les rangs de carottes',
-          distance: '2-3 cm'
+          distance: '2-3 cm',
+          icon: '/icons/plants/carrot.svg'
         }
       ],
       pests: [

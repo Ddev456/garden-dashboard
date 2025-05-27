@@ -29,8 +29,8 @@
     </NuxtLink>
 
     <!-- Bouton central -->
-    <button class="relative flex items-center justify-center -mt-2 bg-primary text-primary-foreground rounded-full shadow-lg w-16 h-16 border-4 border-background focus:outline-none">
-      <Search class="w-8 h-8" />
+    <button class="relative flex items-center justify-center -mt-2 bg-primary/50 text-primary-foreground rounded-full shadow-lg w-16 h-16 border-4 border-primary hover:bg-primary/70 hover:scale-105 transition-all duration-200 focus:outline-none">
+      <img src="/icons/wizard.svg" class="size-10" />
     </button>
 
     <!-- Calendrier -->

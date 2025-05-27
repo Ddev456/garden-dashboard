@@ -11,7 +11,7 @@
               <SelectValue placeholder="Toutes" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Toutes</SelectItem>
+              <SelectItem value="all">Toutes</SelectItem>
               <SelectItem value="légume-fruit">Légume-fruit</SelectItem>
               <SelectItem value="légume-feuille">Légume-feuille</SelectItem>
               <SelectItem value="légume-racine">Légume-racine</SelectItem>
@@ -28,7 +28,7 @@
               <SelectValue placeholder="Toutes" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Toutes</SelectItem>
+              <SelectItem value="all">Toutes</SelectItem>
               <SelectItem value="facile">Facile</SelectItem>
               <SelectItem value="moyen">Moyen</SelectItem>
               <SelectItem value="difficile">Difficile</SelectItem>
@@ -44,7 +44,7 @@
               <SelectValue placeholder="Toutes" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Toutes</SelectItem>
+              <SelectItem value="all">Toutes</SelectItem>
               <SelectItem value="printemps">Printemps</SelectItem>
               <SelectItem value="été">Été</SelectItem>
               <SelectItem value="automne">Automne</SelectItem>

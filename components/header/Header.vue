@@ -4,10 +4,10 @@
     <div class="flex h-16 items-center px-4 lg:px-6">
 
       <!-- Logo mobile -->
-      <div class="flex items-center lg:hidden">
+      <NuxtLink to="/" class="flex items-center lg:hidden">
         <img src="/logo.svg" class="h-6 w-6 text-green-600" />
         <span class="ml-2 text-lg font-semibold">Carnet Potager</span>
-      </div>
+      </NuxtLink>
 
       <div class="flex-1 lg:hidden flex items-center ml-4 lg:ml-0">
         <GardenSwitcher />

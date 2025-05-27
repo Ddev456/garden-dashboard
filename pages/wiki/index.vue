@@ -30,8 +30,8 @@
           :key="plant.id"
           :plant="plant"
           view-mode="card"
-          @view-details="goToPlant"
           @add-to-zone="handleAddToZone"
+          @click="goToPlant(plant)"
         />
       </div>
 
@@ -42,8 +42,8 @@
           :key="plant.id"
           :plant="plant"
           view-mode="list"
-          @view-details="goToPlant"
           @add-to-zone="handleAddToZone"
+                    @click="goToPlant(plant)"
         />
       </div>
     </div>
@@ -74,10 +74,6 @@ import WikiSearchBar from '@/components/wiki/WikiSearchBar.vue'
 import WikiFilters from '@/components/wiki/WikiFilters.vue'
 import WikiStats from '@/components/wiki/WikiStats.vue'
 import WikiEmptyState from '@/components/wiki/WikiEmptyState.vue'
-
-// Debug - à supprimer après test
-console.log('mockPlantsWiki:', mockPlantsWiki)
-console.log('Nombre de plantes:', mockPlantsWiki?.length)
 
 // Meta données de la page
 useSeoMeta({
@@ -145,14 +141,15 @@ const resetFilters = () => {
   }
 }
 
-const goToPlant = (slug: string) => {
-  router.push(`/wiki/${slug}`)
-}
-
 const handleAddToZone = (plant: any) => {
   console.log('Ajouter à la zone:', plant.name)
   // TODO: Implémenter l'ajout à la zone
   // Cette fonctionnalité sera développée plus tard
+}
+
+// Actions
+const goToPlant = (plant: any) => {
+  router.push(`/wiki/${plant.name.toLowerCase()}`)
 }
 
 // Watchers pour les filtres

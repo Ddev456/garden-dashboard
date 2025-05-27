@@ -66,7 +66,7 @@
         >
           <div class="flex items-center gap-3 mb-2">
             <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
-              <LeafIcon class="w-4 h-4 text-white" />
+              <img :src="companion.icon" class="w-4 h-4 text-white" />
             </div>
             <h4 class="font-semibold text-gray-900">{{ companion.plant }}</h4>
           </div>
