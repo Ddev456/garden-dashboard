@@ -65,7 +65,7 @@
           class="bg-purple-50 border border-purple-200 rounded-lg p-4 hover:bg-purple-100 transition-colors"
         >
           <div class="flex items-center gap-3 mb-2">
-            <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+            <div class="w-8 h-8 bg-purple-600/20 rounded-full flex items-center justify-center">
               <img :src="companion.icon" class="w-4 h-4 text-white" />
             </div>
             <h4 class="font-semibold text-gray-900">{{ companion.plant }}</h4>
@@ -273,6 +273,7 @@ interface Itinerary {
     plant: string
     benefit: string
     distance: string
+    icon: string
   }>
   pests?: Array<{
     name: string

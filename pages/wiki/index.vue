@@ -43,7 +43,7 @@
           :plant="plant"
           view-mode="list"
           @add-to-zone="handleAddToZone"
-                    @click="goToPlant(plant)"
+          @click="goToPlant(plant)"
         />
       </div>
     </div>

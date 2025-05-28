@@ -52,31 +52,23 @@
     </div>
 
     <!-- Statistiques rapides - Layout mobile optimisé -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-      <Card class="bg-green-50 border-green-200 hover:bg-green-100 transition-colors">
-        <CardContent class="p-3 md:p-4 text-center">
-          <div class="text-lg md:text-2xl font-bold text-green-700">{{ healthyCount }}</div>
-          <div class="text-xs md:text-sm text-green-600">Plantes saines</div>
-        </CardContent>
-      </Card>
-      <Card class="bg-yellow-50 border-yellow-200 hover:bg-yellow-100 transition-colors">
-        <CardContent class="p-3 md:p-4 text-center">
-          <div class="text-lg md:text-2xl font-bold text-yellow-700">{{ warningCount }}</div>
+    <div class="flex flex-wrap gap-4">
+      <Badge class="bg-green-50 border-green-200 hover:bg-green-100 transition-colors">
+          <span class="text-sm md:text-md font-bold text-green-700">{{ healthyCount }}</span>
+          <span class="text-xs md:text-sm text-green-600">Plantes saines</span>
+      </Badge>
+      <Badge class="bg-yellow-50 border-yellow-200 hover:bg-yellow-100 transition-colors">
+          <div class="text-sm md:text-md font-bold text-yellow-700">{{ warningCount }}</div>
           <div class="text-xs md:text-sm text-yellow-600">À surveiller</div>
-        </CardContent>
-      </Card>
-      <Card class="bg-blue-50 border-blue-200 hover:bg-blue-100 transition-colors">
-        <CardContent class="p-3 md:p-4 text-center">
-          <div class="text-lg md:text-2xl font-bold text-blue-700">{{ needsWateringCount }}</div>
+        </Badge>
+      <Badge class="bg-blue-50 border-blue-200 hover:bg-blue-100 transition-colors">
+          <div class="text-sm md:text-md font-bold text-blue-700">{{ needsWateringCount }}</div>
           <div class="text-xs md:text-sm text-blue-600">Arrosage aujourd'hui</div>
-        </CardContent>
-      </Card>
-      <Card class="bg-purple-50 border-purple-200 hover:bg-purple-100 transition-colors">
-        <CardContent class="p-3 md:p-4 text-center">
-          <div class="text-lg md:text-2xl font-bold text-purple-700">{{ averageAge }}</div>
+        </Badge>
+      <Badge class="bg-purple-50 border-purple-200 hover:bg-purple-100 transition-colors">
+          <div class="text-sm md:text-md font-bold text-purple-700">{{ averageAge }}</div>
           <div class="text-xs md:text-sm text-purple-600">Âge moyen (jours)</div>
-        </CardContent>
-      </Card>
+        </Badge>
     </div>
 
     <!-- Liste des plantes - Grid responsive optimisé -->

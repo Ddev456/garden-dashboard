@@ -22,7 +22,7 @@
         v-for="suggestion in suggestions"
         :key="suggestion"
         @click="selectSuggestion(suggestion)"
-        class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors"
+        class="border-2 border-transparent hover:border-primary hover:border-dashed px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700"
       >
         {{ suggestion }}
       </button>

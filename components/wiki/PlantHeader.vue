@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-8">
+  <div class="border-2 border-dashed border-primary bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-8">
     <div class="flex items-start gap-6">
       <div class="relative">
         <div class="w-24 h-24 bg-white rounded-xl shadow-lg flex items-center justify-center">

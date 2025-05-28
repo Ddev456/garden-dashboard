@@ -76,6 +76,21 @@
     <!-- Filtres -->
     <div class="flex flex-wrap gap-4 p-4 bg-secondary/50 rounded-lg">
       <div class="flex items-center gap-2">
+        <label class="text-sm font-medium">Jardin :</label>
+        <Select v-model="gardenFilter">
+          <SelectTrigger class="w-40">
+            <SelectValue placeholder="Tous jardins" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Tous jardins</SelectItem>
+            <SelectItem v-for="garden in gardens" :key="garden.id" :value="garden.id">
+              {{ garden.name }}
+            </SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      
+      <div class="flex items-center gap-2">
         <label class="text-sm font-medium">Difficulté :</label>
         <Select v-model="difficultyFilter">
           <SelectTrigger class="w-32">
@@ -159,6 +174,18 @@
                 {{ itinerary.difficulty }}
               </Badge>
             </div>
+            
+            <!-- Informations de zone et jardin -->
+            <div class="flex items-center gap-2 mt-2 pt-2 border-t border-gray-200">
+              <img :src="getGardenIcon(itinerary.zoneId)" class="w-4 h-4 opacity-70" />
+              <div 
+                class="w-3 h-3 rounded-full flex-shrink-0"
+                :style="{ backgroundColor: getZoneColor(itinerary.zoneId) }"
+              ></div>
+              <span class="text-xs text-gray-600">
+                {{ getGardenName(itinerary.zoneId) }} - {{ itinerary.zoneName }}
+              </span>
+            </div>
           </CardHeader>
           
           <CardContent class="space-y-4">
@@ -239,12 +266,25 @@ import {
   StarIcon,
   EyeIcon
 } from 'lucide-vue-next'
-import { mockZoneDetail } from '@/mocks/zoneDetails'
+import { mockGardens, getZoneById, getGardenById } from '@/mocks/gardensData'
+import type { ZoneItinerary } from '@/types'
 
-// Données (pour la démo, on utilise les itinéraires de la zone mock)
-const allItineraries = ref(mockZoneDetail.itineraries || [])
+// Récupération de tous les itinéraires depuis le nouveau système
+const allItineraries = computed(() => {
+  const itineraries: ZoneItinerary[] = []
+  for (const garden of mockGardens) {
+    for (const zone of garden.zones) {
+      itineraries.push(...zone.itineraries)
+    }
+  }
+  return itineraries
+})
+
+// Liste de tous les jardins pour le filtre
+const gardens = computed(() => mockGardens)
 
 // Filtres
+const gardenFilter = ref('all')
 const difficultyFilter = ref('all')
 const typeFilter = ref('all')
 const seasonFilter = ref('all')
@@ -272,15 +312,42 @@ const filteredItineraries = computed(() => {
     const matchesType = typeFilter.value === 'all' || itinerary.plantType === typeFilter.value
     const matchesSeason = seasonFilter.value === 'all' || itinerary.season === seasonFilter.value
     
+    // Filtre par jardin
+    let matchesGarden = true
+    if (gardenFilter.value !== 'all') {
+      const zone = getZoneById(itinerary.zoneId)
+      matchesGarden = zone?.gardenId === gardenFilter.value
+    }
+    
     let matchesStatus = true
     if (statusFilter.value !== 'all') {
       const status = getItineraryStatus(itinerary)
       matchesStatus = status === statusFilter.value
     }
     
-    return matchesDifficulty && matchesType && matchesSeason && matchesStatus
+    return matchesDifficulty && matchesType && matchesSeason && matchesGarden && matchesStatus
   })
 })
+
+// Fonctions utilitaires pour récupérer les informations de zone/jardin
+const getZoneColor = (zoneId: string) => {
+  const zone = getZoneById(zoneId)
+  return zone?.color || '#gray'
+}
+
+const getGardenIcon = (zoneId: string) => {
+  const zone = getZoneById(zoneId)
+  if (!zone) return '/icons/greenhouse.svg'
+  const garden = getGardenById(zone.gardenId)
+  return garden?.icon || '/icons/greenhouse.svg'
+}
+
+const getGardenName = (zoneId: string) => {
+  const zone = getZoneById(zoneId)
+  if (!zone) return 'Jardin inconnu'
+  const garden = getGardenById(zone.gardenId)
+  return garden?.name || 'Jardin inconnu'
+}
 
 // Fonctions utilitaires
 const getDifficultyVariant = (difficulty: string) => {

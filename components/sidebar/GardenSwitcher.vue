@@ -13,12 +13,15 @@
       <DropdownMenuSeparator />
       <DropdownMenuGroup>
         <DropdownMenuItem
-          v-for="garden in gardens"
+          v-for="garden in allGardens"
           :key="garden.id"
-          @click="selectGarden(garden)"
+          @click="selectGarden(garden.id)"
         >
-            <img :src="garden.icon" class="w-6 h-6 mb-1" />
-          <span>{{ garden.name }}</span>
+          <img :src="garden.icon" class="w-6 h-6 mb-1" />
+          <div class="flex-1">
+            <span class="font-medium">{{ garden.name }}</span>
+            <div class="text-xs text-gray-500">{{ garden.zones.length }} zones</div>
+          </div>
           <Check
             v-if="garden.id === currentGarden.id"
             class="ml-auto h-4 w-4 text-green-600"
@@ -35,40 +38,8 @@
 </template>
 
 <script setup lang="ts">
-import { Flower, ChevronDown, Check, Plus } from 'lucide-vue-next'
+import { ChevronDown, Check, Plus } from 'lucide-vue-next'
+import { useGarden } from '@/composables/useGarden'
 
-interface Garden {
-  id: string
-  name: string
-  description?: string
-  icon?: string
-}
-
-// Mock data pour les jardins
-const gardens = ref<Garden[]>([
-  {
-    id: '1',
-    name: 'Jardin Principal',
-    description: 'Le jardin principal de la maison',
-    icon: '/icons/greenhouse.svg'
-  },
-  {
-    id: '2',
-    name: 'Potager Bio',
-    description: 'Le potager avec les légumes bio',
-    icon: '/icons/plot.svg'
-  },
-  {
-    id: '3',
-    name: 'Jardin d\'Herbes',
-    description: 'Le jardin des herbes aromatiques',
-    icon: '/icons/parcel.svg'
-  }
-])
-
-const currentGarden = ref(gardens.value[0])
-
-const selectGarden = (garden: Garden) => {
-  currentGarden.value = garden
-}
+const { currentGarden, allGardens, selectGarden } = useGarden()
 </script> 

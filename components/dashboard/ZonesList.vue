@@ -12,24 +12,42 @@
         <div @click="router.push(`/zones/${zone.id}`)" class="relative bg-white rounded-lg p-6 hover:shadow-xl hover:cursor-pointer border-2 border-transparent hover:border-primary hover:border-dashed min-w-[250px] max-w-xs mx-auto">
           <!-- Bouton favori -->
           <button class="absolute top-2 right-2 text-yellow-400 hover:text-yellow-500" @click.stop="toggleFavorite(zone)">
-            <Star :fill="zone.favorite ? 'currentColor' : 'none'" class="w-6 h-6" />
+            <Star fill="none" class="w-6 h-6" />
           </button>
           <h2 class="text-primary text-lg font-medium mb-1">{{ zone.name }}</h2>
-          <img v-if="zone.image" :src="zone.image" :alt="zone.name" class="w-full h-40 object-cover rounded-md mb-2" />
-          <div v-else class="w-full h-40 bg-gray-100 rounded-md mb-2 border-2 border-dashed border-gray-300"></div>
-          <!-- Badges tags -->
-          <div class="flex flex-wrap gap-1 mb-2">
-            <Badge v-for="tag in zone.tags" :key="tag" variant="secondary">{{ tag }}</Badge>
+          
+          <!-- Zone visuelle avec couleur -->
+          <div class="w-full h-40 rounded-md mb-2 relative overflow-hidden bg-gradient-to-br from-green-100 to-green-200">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div 
+                class="w-16 h-16 rounded-full flex items-center justify-center text-2xl"
+                :style="{ backgroundColor: zone.color + '20', color: zone.color }"
+              >
+              <img :src="zone.icon" class="w-16 h-16" />
+              </div>
+            </div>
+            <div class="absolute bottom-2 left-2 right-2">
+              <div 
+                class="w-3 h-3 rounded-full"
+                :style="{ backgroundColor: zone.color }"
+              ></div>
+            </div>
           </div>
+          
+          <!-- Badges pour caractéristiques -->
+          <div class="flex flex-wrap gap-1 mb-2">
+            <Badge variant="secondary" class="text-xs">{{ zone.surface }}</Badge>
+            <Badge variant="secondary" class="text-xs">{{ zone.soilType }}</Badge>
+          </div>
+          
           <!-- Description tronquée avec tooltip shadcn -->
-
-                <p class="mt-1 text-sm text-gray-500 line-clamp-2 cursor-pointer">
-                {{ zone.description }}
-              </p>
+          <p class="mt-1 text-sm text-gray-500 line-clamp-2 cursor-pointer">
+            {{ zone.description }}
+          </p>
             
           <!-- Statistiques et actions -->
           <div class="mt-4 flex items-center justify-between">
-            <span class="text-xs text-gray-400">{{ zone.plantsCount }} plantes</span>
+            <span class="text-xs text-gray-400">{{ zone.itineraries.length }} itinéraires</span>
             <button class="inline-flex items-center px-3 py-1 border border-transparent rounded-md shadow-sm text-xs font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
               Voir détails
             </button>
@@ -38,17 +56,33 @@
       </TooltipTrigger>
             <TooltipContent class="w-[20rem] bg-white rounded-lg shadow-md p-4 transition-all duration-300 flex flex-col gap-6">
               <p class="text-sm text-primary">{{ zone.description }}</p>
-              <p class="text-xs text-slate-500">Plantes de la zone : {{ zone.plantsCount }}</p>
-              <div class="flex flex-wrap gap-1">
-                <div class="p-2 bg-gray-100 rounded-[0.8rem]" v-for="plant in zone.plants" :key="plant">
-                  <img :src="plant" :alt="plant" class="w-6 h-6" />
-                </div>
-                <div v-if="zone.plantsCount === 0" class="flex items-center gap-1 text-amber-400">
-                  <MessageCircleWarning class="w-6 h-6" />
-                  <span>Aucune plante ajoutée</span>
+              <div class="space-y-2">
+                <p class="text-xs text-slate-500">Itinéraires disponibles : {{ zone.itineraries.length }}</p>
+                <div class="text-xs text-slate-500">
+                  <div><strong>Surface :</strong> {{ zone.surface }}</div>
+                  <div><strong>Sol :</strong> {{ zone.soilType }}</div>
+                  <div><strong>Exposition :</strong> {{ zone.sunExposure }}</div>
+                  <div><strong>Irrigation :</strong> {{ zone.irrigationType }}</div>
                 </div>
               </div>
-              </TooltipContent>
+              <div v-if="zone.itineraries.length > 0" class="flex flex-wrap gap-1">
+                <div 
+                  v-for="itinerary in zone.itineraries.slice(0, 3)" 
+                  :key="itinerary.id"
+                  class="p-2 bg-gray-100 rounded-[0.8rem] flex items-center gap-2"
+                >
+                  <img :src="itinerary.icon" :alt="itinerary.name" class="w-4 h-4" />
+                  <span class="text-xs text-primary">{{ itinerary.name }}</span>
+                </div>
+                <div v-if="zone.itineraries.length > 3" class="text-xs text-gray-500 p-2">
+                  +{{ zone.itineraries.length - 3 }} autres
+                </div>
+              </div>
+              <div v-else class="flex items-center gap-1 text-amber-400">
+                <MessageCircleWarning class="w-6 h-6" />
+                <span>Aucun itinéraire disponible</span>
+              </div>
+            </TooltipContent>
             </Tooltip>
           </TooltipProvider>
       </CarouselItem>
@@ -59,8 +93,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { useGarden } from '@/composables/useGarden';
 import {
   Carousel,
   CarouselContent,
@@ -73,98 +108,15 @@ import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/comp
 import { MessageCircleWarning, Star } from 'lucide-vue-next';
 
 const router = useRouter();
+const { currentZones } = useGarden();
+
+// Utilisation des zones du jardin actuel
+const zones = computed(() => currentZones.value);
 
 const toggleFavorite = (zone: any) => {
-  zone.favorite = !zone.favorite;
+  // Fonctionnalité à implémenter plus tard
+  console.log('Toggle favorite for zone:', zone.name);
 };
-
-const zones = ref([
-  {
-    id: '1',
-    name: 'Zone de culture 1',
-    image: '/images/zone1.jpeg',
-    description: 'Parcelle dans la serre avec la vigne type "muscat". Cette zone est idéale pour les cultures précoces et bénéficie d\'un microclimat favorable.',
-    tags: ['Serre', 'Bio'],
-    plantsCount: 3,
-    favorite: false,
-    plants: ["/icons/plants/zucchini.svg", "/icons/plants/tomatoes.svg", "/icons/plants/beans.svg" ]
-  },
-  {
-    id: '2',
-    name: 'Zone de culture 2',
-    image: '/images/zone2.jpeg',
-    description: 'Parcelle dans la serre avec la vigne type "cabernet sauvignon". Sol riche et bien drainé, parfait pour les légumes racines.',
-    tags: ['Extérieur', 'Argileux'],
-    plantsCount: 4,
-    favorite: false,
-    plants: ["/icons/plants/tomato.svg", "/icons/plants/pumpkin.svg", "/icons/plants/sweet-potato.svg", "/icons/plants/turnip.svg" ]
-  },
-  {
-    id: '3',
-    name: 'Zone de culture 3',
-    image: '/images/zone3.jpeg',
-    description: 'Parcelle dans la serre avec la vigne type "pinot noir". Zone ombragée, idéale pour les plantes aromatiques et les salades.',
-    tags: ['Ombre', 'Aromatiques'],
-    plantsCount: 4,
-    favorite: false,
-    plants: ["/icons/plants/tomato.svg", "/icons/plants/pumpkin.svg", "/icons/plants/sweet-potato.svg", "/icons/plants/turnip.svg" ]
-  },
-  {
-    id: '4',
-    name: 'Zone de culture 1',
-    image: null,
-    description: 'Parcelle dans la serre avec la vigne type "muscat"',
-    tags: ['Serre'],
-    plantsCount: 2,
-    favorite: false,
-    plants: ["/icons/plants/tomatoes.svg", "/icons/plants/beans.svg" ]
-  },
-  {
-    id: '5',
-    name: 'Zone de culture 2',
-    image: '/images/zone2.jpeg',
-    description: 'Parcelle dans la serre avec la vigne type "cabernet sauvignon"',
-    tags: ['Extérieur'],
-    plantsCount: 0,
-    favorite: false,
-  },
-  {
-    id: '6',
-    name: 'Zone de culture 3',
-    image: '/images/zone3.jpeg',
-    description: 'Parcelle dans la serre avec la vigne type "pinot noir"',
-    tags: ['Ombre'],
-    plantsCount: 0,
-    favorite: false,
-  },
-  {
-    id: '7',
-    name: 'Zone de culture 1',
-    image: '/images/zone1.jpeg',
-    description: 'Parcelle dans la serre avec la vigne type "muscat"',
-    tags: ['Serre'],
-    plantsCount: 0,
-    favorite: false,
-  },
-  {
-    id: '8',
-    name: 'Zone de culture 2',
-    image: '/images/zone2.jpeg',
-    description: 'Parcelle dans la serre avec la vigne type "cabernet sauvignon"',
-    tags: ['Extérieur'],
-    plantsCount: 0,
-    favorite: false,
-  },
-  {
-    id: '9',
-    name: 'Zone de culture 3',
-    image: '/images/zone3.jpeg',
-    description: 'Parcelle dans la serre avec la vigne type "pinot noir"',
-    tags: ['Ombre'],
-    plantsCount: 0,
-    favorite: false,
-  },
-]);
 </script>
 
 <style scoped>

@@ -1,9 +1,8 @@
 <template>
   <!-- Vue carte (grid) -->
-  <NuxtLink     v-if="viewMode === 'card'" :to="{ name: 'wiki', params: { slug: props.slug } }">
   <Card 
-
-    class="h-full hover:shadow-lg transition-all duration-300 cursor-pointer group"
+    v-if="viewMode === 'card'" 
+    class="h-full hover:shadow-lg cursor-pointer group border-4 border-transparent hover:border-primary hover:border-dashed"
     @click="$emit('view-details', plant.slug)"
   >
     <CardContent class="p-0">
@@ -107,7 +106,6 @@
       </div>
     </CardContent>
   </Card>
-</NuxtLink>
   <!-- Vue liste -->
   <Card 
     v-else
