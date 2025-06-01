@@ -22,7 +22,7 @@
               class="flex items-center gap-2 mb-2 cursor-pointer group transition-all duration-300 hover:bg-white/50 rounded p-2 -m-2"
               @click="navigateToZone"
             >
-              <img :src="zoneInfo.gardenIcon" class="w-4 h-4 opacity-70" />
+              <img :src="zoneInfo.gardenIcon" class="size-10 opacity-70" />
               <div 
                 class="w-3 h-3 rounded-full flex-shrink-0"
                 :style="{ backgroundColor: zoneInfo.zoneColor }"

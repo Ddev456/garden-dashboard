@@ -53,12 +53,7 @@
         <Card class="overflow-hidden">
           <div class="relative h-48 md:h-64 bg-gradient-to-br from-green-100 to-green-200">
             <div class="absolute inset-0 flex items-center justify-center">
-              <div 
-                class="w-24 h-24 rounded-full flex items-center justify-center text-4xl"
-                :style="{ backgroundColor: zoneDetail.color + '20', color: zoneDetail.color }"
-              >
-                🌱
-              </div>
+              <img :src="zoneDetail.image" alt="Zone" class="w-full h-full object-cover" />
             </div>
             <div class="absolute bottom-4 left-4 right-4">
               <p class="text-sm md:text-base text-gray-700 bg-white/90 backdrop-blur-sm rounded-lg p-3">

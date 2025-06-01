@@ -563,7 +563,7 @@ export const mockZoneDetail: ZoneDetail = {
             'Conserver à température ambiante pour le goût'
           ],
           optimalPeriod: 'Juillet-Octobre',
-          icon: '/icons/steps/harvest.svg',
+          icon: '/icons/tools/harvest.svg',
           completed: false
         }
       ],

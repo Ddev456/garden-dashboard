@@ -15,6 +15,7 @@ export const mockGardens: Garden[] = [
         id: 'zone-1-1',
         name: 'Potager Bio',
         description: 'Zone dédiée aux légumes biologiques de saison',
+        image: '/images/zone1.jpeg',
         icon: '/icons/plot.svg',
         surface: '30m²',
         soilType: 'Terre argilo-limoneuse',
@@ -194,7 +195,7 @@ export const mockGardens: Garden[] = [
                 optimalPeriod: 'Mi-mai',
                 completed: true,
                 completedDate: '18/05/2024',
-                icon: '/icons/steps/transplant.svg',
+                icon: '/icons/tools/transplant.svg',
                 tools: ['Transplantoir', 'Seau d\'eau', 'Paillis'],
                 tips: ['Transplanter en soirée', 'Arroser abondamment']
               },
@@ -228,7 +229,7 @@ export const mockGardens: Garden[] = [
                 duration: '20 minutes',
                 optimalPeriod: 'Juillet-Septembre',
                 completed: false,
-                icon: '/icons/steps/harvest.svg',
+                icon: '/icons/tools/harvest.svg',
                 tools: ['Panier de récolte', 'Sécateur'],
                 tips: ['Récolter le matin de préférence', 'Laisser mûrir à l\'intérieur']
               }
@@ -240,6 +241,7 @@ export const mockGardens: Garden[] = [
         id: 'zone-1-2',
         name: 'Serre Principale',
         description: 'Serre pour les cultures précoces et tardives',
+        image: '/images/zone2.jpeg',
         icon: '/icons/greenhouse.svg',
         surface: '15m²',
         soilType: 'Terreau enrichi',
@@ -421,7 +423,7 @@ export const mockGardens: Garden[] = [
                 duration: '45 minutes',
                 optimalPeriod: 'Avril',
                 completed: false,
-                icon: '/icons/steps/transplant.svg',
+                icon: '/icons/tools/transplant.svg',
                 tools: ['Bacs de culture', 'Terreau enrichi'],
                 tips: ['Espacer de 50cm entre plants', 'Maintenir humidité constante']
               }
@@ -443,6 +445,7 @@ export const mockGardens: Garden[] = [
         id: 'zone-2-1',
         name: 'Carré de Légumes-racines',
         description: 'Zone spécialisée pour carottes, radis, navets',
+        image: '/images/zone3.jpeg',
         icon: '/icons/carrot.svg',
         surface: '20m²',
         soilType: 'Sable limoneux',
@@ -651,7 +654,7 @@ export const mockGardens: Garden[] = [
                 duration: '10 minutes',
                 optimalPeriod: '20-30 jours après semis',
                 completed: false,
-                icon: '/icons/steps/harvest.svg',
+                icon: '/icons/tools/harvest.svg',
                 tools: ['Panier', 'Sécateur'],
                 tips: ['Récolter tôt le matin', 'Ne pas laisser trop grossir']
               }
@@ -673,6 +676,7 @@ export const mockGardens: Garden[] = [
         id: 'zone-3-1',
         name: 'Spirale d\'Aromates',
         description: 'Spirale d\'herbes avec différents microclimats',
+        image: '/images/zone2.jpeg',
         icon: '/icons/spiral.svg',
         surface: '8m²',
         soilType: 'Terreau drainant',

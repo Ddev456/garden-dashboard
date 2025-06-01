@@ -1,7 +1,6 @@
 <template>
   <div 
     class="relative pl-20 transition-all duration-500 ease-out"
-    :class="{ 'animate-pulse-subtle': isNext }"
   >
     <!-- Cercle d'étape avec animation -->
     <div 
@@ -10,7 +9,7 @@
         step.completed 
           ? 'bg-primary shadow-lg shadow-primary/50 animate-step-completed' 
           : isNext
-            ? 'bg-yellow-400 shadow-lg shadow-yellow-400/50 animate-pulse'
+            ? 'bg-yellow-400 shadow-lg shadow-yellow-400/50 animate-pulse-subtle'
             : 'bg-gray-300'
       ]"
     >
@@ -33,7 +32,7 @@
         step.completed 
           ? 'bg-primary/5 border-primary/20 hover:bg-primary/8' 
           : isNext
-            ? 'bg-yellow-50 border-yellow-200 hover:bg-yellow-100'
+            ? 'bg-yellow-50 border-yellow-200 hover:bg-yellow-100 animate-pulse-subtle'
             : 'bg-white border-gray-200 hover:bg-gray-50'
       ]"
     >

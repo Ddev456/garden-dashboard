@@ -89,6 +89,7 @@ export interface Zone {
   id: string
   name: string
   description: string
+  image: string
   icon: string
   surface: string
   soilType: string

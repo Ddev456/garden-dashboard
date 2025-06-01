@@ -252,8 +252,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { useGarden } from '@/composables/useGarden'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -269,26 +270,49 @@ import {
 import { mockGardens, getZoneById, getGardenById } from '@/mocks/gardensData'
 import type { ZoneItinerary } from '@/types'
 
-// Récupération de tous les itinéraires depuis le nouveau système
+// Utiliser le composable useGarden pour réagir aux changements de jardin
+const { currentGarden, currentItineraries, allGardens } = useGarden()
+
+// Récupération de tous les itinéraires depuis le jardin courant OU tous les jardins
 const allItineraries = computed(() => {
-  const itineraries: ZoneItinerary[] = []
-  for (const garden of mockGardens) {
-    for (const zone of garden.zones) {
-      itineraries.push(...zone.itineraries)
+  if (gardenFilter.value === 'all') {
+    const itineraries: ZoneItinerary[] = []
+    for (const garden of allGardens) {
+      for (const zone of garden.zones) {
+        itineraries.push(...zone.itineraries)
+      }
     }
+    return itineraries
   }
-  return itineraries
+  
+  // Si un jardin spécifique est sélectionné, utiliser ses itinéraires
+  if (gardenFilter.value === currentGarden.value.id) {
+    return currentItineraries.value
+  }
+  
+  // Sinon, filtrer par jardin spécifique
+  const garden = allGardens.find(g => g.id === gardenFilter.value)
+  if (garden) {
+    return garden.zones.flatMap(zone => zone.itineraries)
+  }
+  
+  return []
 })
 
 // Liste de tous les jardins pour le filtre
-const gardens = computed(() => mockGardens)
+const gardens = computed(() => allGardens)
 
 // Filtres
-const gardenFilter = ref('all')
+const gardenFilter = ref(currentGarden.value.id)
 const difficultyFilter = ref('all')
 const typeFilter = ref('all')
 const seasonFilter = ref('all')
 const statusFilter = ref('all')
+
+// Synchroniser le filtre jardin avec le jardin courant
+watch(currentGarden, (newGarden) => {
+  gardenFilter.value = newGarden.id
+}, { immediate: true })
 
 // Navigation
 const router = useRouter()
