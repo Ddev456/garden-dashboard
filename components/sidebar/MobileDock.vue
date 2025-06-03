@@ -31,9 +31,9 @@
     <!-- Bouton central -->
     <button 
       @click="() => openAssistant()"
-      class="relative flex items-center justify-center -mt-2 bg-primary/50 text-primary-foreground rounded-full shadow-lg w-16 h-16 border-4 border-primary hover:bg-primary/70 hover:scale-105 transition-all duration-200 focus:outline-none"
+      class="bg-background relative flex items-center justify-center -mt-2 text-primary-foreground rounded-full shadow-lg w-16 h-16 border-4 border-primary border-dotted hover:scale-105 transition-all duration-200 focus:outline-none"
     >
-      <img src="/icons/wizard.svg" class="size-10" />
+      <img src="/icons/settings.svg" class="size-10" />
     </button>
 
     <!-- Calendrier -->

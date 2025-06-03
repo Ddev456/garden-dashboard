@@ -183,7 +183,7 @@ export const mockGardens: Garden[] = [
                 optimalPeriod: 'Mi-mars',
                 completed: true,
                 completedDate: '15/03/2024',
-                icon: '/icons/steps/seeding.svg',
+                icon: '/icons/tools/direct-sowing.svg',
                 tools: ['Godets', 'Terreau', 'Arrosoir'],
                 tips: ['Maintenir la température à 20-22°C', 'Arroser avec précaution']
               },
@@ -207,7 +207,6 @@ export const mockGardens: Garden[] = [
                 optimalPeriod: 'Fin mai',
                 completed: true,
                 completedDate: '25/05/2024',
-                icon: '/icons/steps/support.svg',
                 tools: ['Tuteurs bambou', 'Liens souples', 'Maillet'],
                 tips: ['Planter en biais pour plus de stabilité', 'Laisser de l\'espace']
               },
@@ -412,7 +411,7 @@ export const mockGardens: Garden[] = [
                 duration: '1 heure',
                 optimalPeriod: 'Février-Mars',
                 completed: false,
-                icon: '/icons/steps/seeding.svg',
+                icon: '/icons/tools/direct-sowing.svg',
                 tools: ['Mini-serre', 'Godets', 'Thermomètre'],
                 tips: ['Maintenir 25°C constant', 'Utiliser un terreau spécial semis']
               },
@@ -458,7 +457,7 @@ export const mockGardens: Garden[] = [
             id: 'itinerary-2-1-1',
             name: 'Culture de Radis rapides',
             description: 'Itinéraire pour cultiver des radis en 30 jours, parfait pour débuter',
-            icon: '/icons/plants/radish.svg',
+            icon: '/icons/plants/radish.png',
             difficulty: 'facile',
             totalDuration: '30 jours',
             plantType: 'légume-racine',
@@ -621,7 +620,7 @@ export const mockGardens: Garden[] = [
                 duration: '10 minutes',
                 optimalPeriod: 'Selon variété',
                 completed: false,
-                icon: '/icons/steps/seeding.svg',
+                icon: '/icons/tools/direct-sowing.svg',
                 tools: ['Graines', 'Arrosoir avec pomme'],
                 tips: ['Semer peu profond (1cm)', 'Arroser en pluie fine']
               },

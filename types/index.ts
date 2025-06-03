@@ -8,7 +8,7 @@ export interface ItineraryStep {
   optimalPeriod: string
   completed: boolean
   completedDate?: string
-  icon: string
+  icon?: string
   tools: string[]
   tips: string[]
 }
@@ -90,7 +90,7 @@ export interface Zone {
   name: string
   description: string
   image: string
-  icon: string
+  icon?: string
   surface: string
   soilType: string
   sunExposure: string

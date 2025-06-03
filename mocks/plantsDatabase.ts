@@ -136,7 +136,7 @@ export const plantsDatabase: PlantDatabase[] = [
         description: 'Semer directement en pleine terre',
         duration: '30 minutes',
         relativeWeek: 0,
-        icon: '/icons/steps/seeding.svg',
+        icon: '/icons/tools/direct-sowing.svg',
         tools: ['Graines', 'Râteau', 'Arrosoir'],
         tips: ['Semer clair', 'Recouvrir légèrement']
       },
@@ -195,7 +195,7 @@ export const plantsDatabase: PlantDatabase[] = [
         description: 'Semer les graines en lignes espacées',
         duration: '45 minutes',
         relativeWeek: 0,
-        icon: '/icons/steps/seeding.svg',
+        icon: '/icons/tools/direct-sowing.svg',
         tools: ['Graines', 'Cordeau', 'Arrosoir'],
         tips: ['Lignes espacées de 25cm', 'Semer clair']
       }

@@ -58,7 +58,7 @@
         <!-- Assistant -->
         <Button
           @click="openAssistant"
-          class="bg-background text-primary hover:border-dashed hover:bg-background/90 border-3 border-dotted border-primary px-4 py-2 text-sm font-medium"
+          class="hidden lg:flex bg-background text-primary hover:border-dashed hover:bg-background/90 border-3 border-dotted border-primary px-4 py-2 text-sm font-medium"
         >
           <div class="flex items-center gap-2">
             <img src="/icons/settings.svg" alt="Assistant" class="size-6" />

@@ -42,9 +42,16 @@
         @click="toggleExpanded"
       >
         <div class="flex items-center gap-3">
-          <img 
+          <img
+            v-if="step.icon"
             :src="step.icon" 
             :alt="step.title" 
+            class="w-6 h-6 transition-transform duration-300 hover:scale-110" 
+          />
+          <img
+            v-else
+            src="/icons/planting.svg"
+            alt="Assistant"
             class="w-6 h-6 transition-transform duration-300 hover:scale-110" 
           />
           <div>

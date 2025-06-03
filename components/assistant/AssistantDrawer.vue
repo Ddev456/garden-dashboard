@@ -4,8 +4,8 @@
       <!-- Header avec progression -->
       <DrawerHeader class="text-center pb-4 border-b">
         <DrawerTitle class="flex items-center justify-center gap-2 text-lg sm:text-xl">
-          <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-            <img src="/icons/settings.svg" alt="Assistant" class="size-6" />
+          <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+            <img src="/icons/settings.svg" alt="Assistant" class="size-10" />
           </div>
           Assistant Culture
         </DrawerTitle>
