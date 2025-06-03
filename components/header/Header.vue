@@ -55,6 +55,17 @@
       <!-- Actions -->
       <div class="flex items-center space-x-2">
 
+        <!-- Assistant -->
+        <Button
+          @click="openAssistant"
+          class="bg-background text-primary hover:border-dashed hover:bg-background/90 border-3 border-dotted border-primary px-4 py-2 text-sm font-medium"
+        >
+          <div class="flex items-center gap-2">
+            <img src="/icons/settings.svg" alt="Assistant" class="size-6" />
+            <span class="hidden sm:inline">Assistant</span>
+          </div>
+        </Button>
+
         <!-- Notifications -->
         <Button variant="ghost" size="icon" class="relative">
           <Bell class="h-5 w-5" />
@@ -80,6 +91,9 @@ import { Search, Plus, Bell, HelpCircle, Menu } from 'lucide-vue-next'
 import type { Task, TaskPriority } from '~/types/task'
 import { mockTasks } from '~/mocks/data'
 import GardenSwitcher from '../sidebar/GardenSwitcher.vue'
+import { useAssistant } from '@/composables/useAssistant'
+
+const { openAssistant } = useAssistant()
 const searchQuery = ref('')
 const isTaskModalOpen = ref(false)
 

@@ -254,7 +254,7 @@ export const mockGardens: Garden[] = [
             id: 'itinerary-1-2-1',
             name: 'Culture d\'Aubergines',
             description: 'Cultivation d\'aubergines en serre chauffée',
-            icon: '/icons/plants/eggplant.svg',
+            icon: '/icons/wiki.svg',
             difficulty: 'difficile',
             totalDuration: '5-6 mois',
             plantType: 'légume-fruit',

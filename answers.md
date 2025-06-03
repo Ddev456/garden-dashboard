@@ -1,36 +1,33 @@
-Je vais développer la section calendrier pour votre dashboard de jardinage. Avant de commencer l'implémentation, j'ai besoin de clarifier quelques points pour bien orienter le développement et rester dans le scope MVP :
+Je vais vous aider à mettre à jour le code pour intégrer les tooltips de manière cohérente avec l'application actuelle. Avant de procéder, j'ai quelques questions pour mieux orienter la mise à jour :
 
-## Questions sur le scope et les fonctionnalités :
+1. Dans la version actuelle de `index.vue`, je vois que les zones sont affichées dans une grille (`grid-cols-1 md:grid-cols-2 lg:grid-cols-3`). Souhaitez-vous :
+   - Garder cette mise en page en grille
+   - Revenir au carousel comme dans l'ancienne version
+   - Ou avoir une option pour basculer entre les deux ?
 
-1. **Type de calendrier** : Voulez-vous un calendrier mensuel classique, ou plutôt une vue timeline/planning des tâches de jardinage ?
+   Réponse : Que suggères-tu ?
 
-Réponse : Hm, je ne sais pas trop, que suggères tu ? Il y a peut être une vue à privilégier pour le mvp puis nous pourrons implémenter plus tard d'autres vues.
+2. Concernant le design des tooltips, je vois que l'application utilise un style moderne avec des dégradés et des bordures subtiles. Souhaitez-vous :
+   - Garder le même style de tooltip que l'ancienne version (fond blanc, ombre)
+   - Adapter le style pour correspondre au design actuel (avec des dégradés et des bordures plus modernes)
+   - Ou créer un nouveau style de tooltip ?
 
-2. **Données à afficher** : Quels éléments doivent apparaître dans le calendrier ?
-   - Tâches de jardinage (arrosage, taille, plantation, etc.) ?
-   - Événements météo/saisonniers ?
-   - Rappels personnalisés ?
-   - Phases lunaires ?
+   Réponse : Que préconises-tu ?
 
-Réponse : Je ne sais pas trop, que suggères-tu ? Les phase lunaires pourrait être un mode activable/désactivable.
+3. Pour le contenu des tooltips, je vois que l'ancienne version affichait :
+   - La description complète
+   - Le nombre d'itinéraires
+   - Les caractéristiques (surface, sol, exposition, irrigation)
+   - La liste des itinéraires (jusqu'à 3)
+   Voulez-vous garder ces mêmes informations ou souhaitez-vous en ajouter/supprimer certaines ?
 
-3. **Interactivité MVP** : Pour le prototype, quelles interactions sont prioritaires ?
-   - Visualisation seule ?
-   - Ajout de tâches simples ?
-   - Modification/suppression ?
+   Réponse : Conserves et ajoute ce qui te paraît pertinent.
 
-Réponse : Pour cette itération/implémentation juste visualisation, lorsque je "brancherais" directus CMS l'ajout de tâches etc ...
+4. Concernant l'interaction, dans l'ancienne version, le tooltip s'affichait au survol de la carte. Souhaitez-vous :
+   - Garder ce comportement
+   - Ajouter un bouton dédié pour afficher le tooltip
+   - Ou proposer les deux options ?
 
-4. **Intégration avec les zones** : Le calendrier doit-il être lié aux zones du jardin que vous avez déjà créées ?
+Réponse : peux être le bouton pour afficher sur mobile uniquement et sinon le comportement par défaut du tooltip ? Ou si tu penses à quelque chose de plus pertinent ?
 
-Réponse : Oui, tous dans l'app doit être géré par zone de jardin et jardin de l'utilisateur.
-
-5. **Période d'affichage** : Vue mensuelle uniquement ou aussi hebdomadaire/annuelle ?
-
-Réponse : Que suggères-tu ?
-
-6. **Données mockées** : Voulez-vous que je crée des données d'exemple pour peupler le calendrier ?
-
-Réponse : Oui, bien sûr.
-
-Pouvez-vous me donner vos priorités parmi ces éléments pour que je puisse créer une version MVP fonctionnelle et bien structurée ?
+Ces informations me permettront de proposer une mise à jour qui correspond exactement à vos besoins.

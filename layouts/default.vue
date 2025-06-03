@@ -18,9 +18,14 @@
         </div>
       </ScrollArea>
       </div>
+      
+      <!-- Assistant -->
+      <Assistant />
     </div>
 </template>
 
 <script setup lang="ts">
+import Assistant from '@/components/assistant/Assistant.vue'
+
 const isMobileMenuOpen = ref(false)
 </script> 
