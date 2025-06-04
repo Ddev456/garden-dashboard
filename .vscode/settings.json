@@ -1,0 +1,12 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "CloudSQL-PostgreSQL",
+            "database": "carnetpotager",
+            "username": "api-8w4i",
+            "name": "encore (carnetpotager)",
+            "instanceConnectionName": "carnetpotager:localhost"
+        }
+    ]
+}
